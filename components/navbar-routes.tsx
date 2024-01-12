@@ -12,23 +12,23 @@ export const NavbarRoutes = () => {
   const isTeacherPage = pathname?.startsWith('/teacher');
   const isPlayer = pathname?.startsWith('/chapter');
   return (
-    <div className='flex gap-x-2 ml-auto'>
+    <div className="ml-auto flex gap-x-2">
       {isTeacherPage || isPlayer ? (
-        <Link href='/'>
-          <Button size='sm' variant='ghost'>
-            <LogOut className='h-4 w-4 mr-2' />
+        <Link href="/">
+          <Button size="sm" variant="ghost">
+            <LogOut className="mr-2 h-4 w-4" />
             Exit
           </Button>
         </Link>
       ) : (
-        <Link href='/teacher/courses'>
-          <Button size='sm' variant='ghost'>
+        <Link href="/teacher/courses">
+          <Button size="sm" variant="ghost">
             Teacher Mode
           </Button>
         </Link>
       )}
       {/* Component ของ Clerk */}
-      <UserButton afterSignOutUrl='/' />
+      <UserButton afterSignOutUrl="/" />
     </div>
   );
 };

@@ -22,7 +22,9 @@ const formSchema = z.object({
 const AttachmentForm = ({ initialData, courseId }: AttachmentFormProps) => {
   const router = useRouter();
   const [isEditing, setIsEditing] = useState(false);
-  const [deletingAttachmentId, setDeletingAttachmentId] = useState<string | null>(null);
+  const [deletingAttachmentId, setDeletingAttachmentId] = useState<
+    string | null
+  >(null);
 
   const toggleEdit = () => setIsEditing((c) => !c);
 
@@ -51,14 +53,14 @@ const AttachmentForm = ({ initialData, courseId }: AttachmentFormProps) => {
     }
   };
   return (
-    <div className='mt-6 border bg-slate-100 rounded-md p-4'>
-      <div className='font-medium flex items-center justify-between'>
+    <div className="mt-6 rounded-md border bg-slate-100 p-4">
+      <div className="flex items-center justify-between font-medium">
         Course attachments
-        <Button variant='ghost' onClick={toggleEdit}>
+        <Button variant="ghost" onClick={toggleEdit}>
           {isEditing && <>Cancel</>}
           {!isEditing && (
             <>
-              <PlusCircle className='h-4 w-4 mr-2' />
+              <PlusCircle className="mr-2 h-4 w-4" />
               Add a file
             </>
           )}
@@ -67,30 +69,32 @@ const AttachmentForm = ({ initialData, courseId }: AttachmentFormProps) => {
       {!isEditing && (
         <>
           {initialData.attachments.length === 0 && (
-            <p className='text-sm mt-2 text-slate-500 italic'>No attachments yet</p>
+            <p className="mt-2 text-sm italic text-slate-500">
+              No attachments yet
+            </p>
           )}
         </>
       )}
       {initialData.attachments.length > 0 && (
-        <div className='space-y-2'>
+        <div className="space-y-2">
           {initialData.attachments.map((attachment) => (
             <div
               key={attachment.id}
-              className='flex items-center p-3 w-full bg-sky-100 border-sky-200 border text-sky-700 rounded-md'
+              className="flex w-full items-center rounded-md border border-sky-200 bg-sky-100 p-3 text-sky-700"
             >
-              <File className='h-4 w-4 mr-2 flex-shrink-0' />
-              <p className='text-xs line-clamp-1'>{attachment.name}</p>
+              <File className="mr-2 h-4 w-4 flex-shrink-0" />
+              <p className="line-clamp-1 text-xs">{attachment.name}</p>
               {deletingAttachmentId === attachment.id && (
                 <div>
-                  <Loader2 className='h-4  w-4 animate-spin' />
+                  <Loader2 className="h-4  w-4 animate-spin" />
                 </div>
               )}
               {deletingAttachmentId !== attachment.id && (
                 <button
-                  className='ml-auto hover:opacity-75 transition'
+                  className="ml-auto transition hover:opacity-75"
                   onClick={() => onDelete(attachment.id)}
                 >
-                  <X className='h-4  w-4 ' />
+                  <X className="h-4  w-4 " />
                 </button>
               )}
             </div>
@@ -100,14 +104,14 @@ const AttachmentForm = ({ initialData, courseId }: AttachmentFormProps) => {
       {isEditing && (
         <div>
           <FileUpload
-            endpoint='courseAttachment'
+            endpoint="courseAttachment"
             onChange={(url) => {
               if (url) {
                 onSubmit({ url: url });
               }
             }}
           />
-          <div className='text-xs text-muted-foreground mt-4'>
+          <div className="mt-4 text-xs text-muted-foreground">
             Add anything your student might need to complete the course.
           </div>
         </div>
