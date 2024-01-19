@@ -6,7 +6,10 @@
 - ORM : Prisma
 - Database : MySQL (Plannet Scale)
 
-- CSS : Tailwindcss
+- CSS : Tailwindcss, CVA , tailwindMerge, clsx
+- CSS : Shadcn
+- Feedback UI : react-hot-toast
+- Media : Uploadthing
 - Icon : Lucide React
 - Logo : from logoipsum.com
 

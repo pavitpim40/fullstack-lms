@@ -17,15 +17,16 @@ model Course {
   price       Float?
   isPublished Boolean @default(false)
 
-  categoryId String?
-  Category   Category? @relation(fields: [categoryId], references: [id])
-
   chapters    Chapter[]
   attachments Attachment[]
   purchases   Purchase[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  // category:course 1:M
+  categoryId String?
+  Category   Category? @relation(fields: [categoryId], references: [id])
 
   @@index([categoryId])
 }
@@ -35,11 +36,12 @@ model Attachment {
   name String
   url  String @db.Text
 
-  course   Course? @relation(fields: [courseId], references: [id], onDelete: Cascade)
-  courseId String?
-
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  //course:Attachment 1:M
+  course   Course? @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  courseId String?
 
   @@index([courseId])
 }
@@ -59,13 +61,14 @@ model Chapter {
   isPublished Boolean @default(false)
   isFree      Boolean @default(false)
 
-  muxData  MuxData?
-  courseId String
-  course   Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  muxData MuxData?
 
   userProgress UserProgress[]
   createdAt    DateTime       @default(now())
   updatedAt    DateTime       @updatedAt
+
+  courseId String
+  course   Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
 
   @@index([courseId])
 }

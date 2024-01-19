@@ -1,22 +1,22 @@
-'use client';
-import { UserButton } from '@clerk/nextjs';
-import { usePathname } from 'next/navigation';
-import { Button } from './ui/button';
-import { LogOut } from 'lucide-react';
-import Link from 'next/link';
+"use client";
+import { UserButton } from "@clerk/nextjs";
+import { usePathname } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { LogOut as LogoutIcon } from "lucide-react";
+import Link from "next/link";
 
 // For Toggle Teacher Mode for Edit Course and Player Mode
 export const NavbarRoutes = () => {
   const pathname = usePathname();
 
-  const isTeacherPage = pathname?.startsWith('/teacher');
-  const isPlayer = pathname?.startsWith('/chapter');
+  const isTeacherPage = pathname?.startsWith("/teacher");
+  const isPlayerPage = pathname?.startsWith("/chapter");
   return (
     <div className="ml-auto flex gap-x-2">
-      {isTeacherPage || isPlayer ? (
+      {isTeacherPage || isPlayerPage ? (
         <Link href="/">
           <Button size="sm" variant="ghost">
-            <LogOut className="mr-2 h-4 w-4" />
+            <LogoutIcon className="mr-2 h-4 w-4" />
             Exit
           </Button>
         </Link>

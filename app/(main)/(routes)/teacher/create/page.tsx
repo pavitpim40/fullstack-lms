@@ -19,13 +19,16 @@ import { Input } from '@/components/ui/input';
 import Link from 'next/link';
 import toast from 'react-hot-toast';
 
+// Schemas
 const formSchema = z.object({
   title: z.string().min(1, {
     message: 'Title is required',
   }),
 });
 
+// Component
 const CreatePage = () => {
+  // hooks
   const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -34,10 +37,10 @@ const CreatePage = () => {
     },
   });
 
+  // handler
   const { isSubmitting, isValid } = form.formState;
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    console.log(values);
     try {
       const response = await axios.post('/api/courses', values);
       router.push(`/teacher/courses/${response.data.id}`);
@@ -47,6 +50,7 @@ const CreatePage = () => {
       toast.error('Something went wrong!');
     }
   };
+  // ui
   return (
     <div className="mx-auto flex h-full max-w-5xl p-6 md:items-center md:justify-center">
       <div>

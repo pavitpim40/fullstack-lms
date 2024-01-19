@@ -13,6 +13,7 @@ import { FileUpload } from '@/components/file-upload';
 
 interface AttachmentFormProps {
   initialData: Course & { attachments: Attachment[] };
+  // initialData: Course;
   courseId: string;
 }
 

@@ -1,5 +1,5 @@
-import { Logo } from './logo';
-import { SidebarTabs } from './sidebar-routes';
+import { Logo } from "./logo";
+import { SidebarTabs } from "./sidebar-routes";
 const SideBar = () => {
   return (
     <div className="flex h-full flex-col overflow-y-auto border-r bg-white shadow-sm">
